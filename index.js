@@ -13,4 +13,22 @@ I need this code, but don't know where, perhaps should make some middleware, don
 Go code!
 
 Test 
+
+// server.js connected to index.js
+
+// routers connected to server.js
+
+// models connected to routers 
+
+// db connected to models
+// model functions exported
+
+// middleware: 
+// make sure to export the middleware functions from the middleware file in the following format
+// module.exports = {
+//    middlewarefunctionname,
+// };
+// then, desctructure the call in the server file  as follows 
+// const { middlewarefunctionname } = require("../users/middlewarefile.js");
+
 */
