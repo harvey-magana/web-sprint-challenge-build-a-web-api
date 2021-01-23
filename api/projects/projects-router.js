@@ -18,20 +18,22 @@ const router = express.Router();
     const { id } = req.params;
 
     Projects.get(id)
-      .then((item) => {
-        if (item) {
-          res.json(item);
+      .then((project) => {
+        if (project) {
+          res.json(project);
         } else {
-          res.status(404).json({ message: "Could not find item with given id." });
+          res.status(404).json({ message: "Could not find project with given id." });
         }
       })
       .catch((err) => {
-        res.status(500).json({ message: "Failed to get item" });
+        res.status(500).json({ message: "Failed to get project." });
       });
  })
-/*
- router.post('/projects', (req, res) => {
-     Projects.insert(req.body)
+
+ router.post('/', (req, res) => {
+     const newProject = req.body;
+
+     Projects.insert(newProject)
         .then(project => {
             res.status(201).json(project);
         })
@@ -42,5 +44,5 @@ const router = express.Router();
             })
         })
  })
- */
+ 
 module.exports = router;
