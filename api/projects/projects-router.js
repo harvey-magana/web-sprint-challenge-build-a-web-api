@@ -13,7 +13,8 @@ const router = express.Router();
     getProjectActions,
  */
 
- router.get('/:id', (req, res) => { // this request is not working...
+ 
+ router.get('/', (req, res) => { // this request is not working...
     const { id } = req.params;
 
     Projects.get(id)
@@ -28,7 +29,7 @@ const router = express.Router();
         res.status(500).json({ message: "Failed to get item" });
       });
  })
-
+/*
  router.post('/projects', (req, res) => {
      Projects.insert(req.body)
         .then(project => {
@@ -41,3 +42,5 @@ const router = express.Router();
             })
         })
  })
+ */
+module.exports = router;

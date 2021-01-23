@@ -1,16 +1,16 @@
 const express = require('express');
-const server = express();
+
 
 // Complete your server here!
 // Do NOT `server.listen()` inside this file!
 
-const ProjectsRouter = require('./projects/projects-router.js');
+const projectsRouter = require('./projects/projects-router.js');
+const server = express();
 
 server.use(express.json());
+server.use('/api/projects', projectsRouter);
 
-server.use('/api/projects/', ProjectsRouter);
-
-server.get('/', (req, res) => {
+server.get('/api', (req, res) => {
     res.send(`<h2>My Express Sprint Project</h2>`);
   });
 
