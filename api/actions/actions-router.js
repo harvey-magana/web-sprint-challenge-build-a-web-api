@@ -8,7 +8,7 @@ const router = express.Router();
 /**
  *  get, * 
   insert, *
-  update,
+  update, *
   remove,
  */
 
@@ -64,5 +64,25 @@ router.put('/:id', (req, res) => {
         })
 });
 
+router.delete('/:id', (req, res) => {
+    Actions.remove(req.params.id)
+    .then(action => {
+        if(action > 0) {
+            res.status(200).json({
+                message: "The action has been deleted."
+            })
+        } else {
+            res.status(404).json({
+                message: "The action with the specified id does not exist."
+            })
+        }
+    })
+    .catch(error => {
+        console.log(error);
+        res.status(500).json({
+            error: "The action could not be removed"
+        })
+    })
+});
 
 module.exports = router;
