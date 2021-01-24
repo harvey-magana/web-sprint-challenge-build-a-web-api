@@ -6,8 +6,8 @@ const Projects = require('./projects-model.js');
 const router = express.Router();
 
 /**
- *   get,
-    insert,
+ *   get, *
+    insert, *
     update,
     remove,
     getProjectActions,
@@ -41,6 +41,27 @@ const router = express.Router();
             console.log(error);
             res.status(500).json({
                 message: "Error adding project"
+            })
+        })
+ })
+
+ router.put('/:id', (req, res) => {
+    const changes = req.body;
+    console.log(req)
+    Projects.update(req.params.id, changes)
+        .then(project => {
+            if(project) {
+                res.status(200).json(project);
+            } else {
+                res.status(400).json({
+                    message: "Project id not found."
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({
+                message: "Error retrieving the project."
             })
         })
  })
