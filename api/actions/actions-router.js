@@ -6,7 +6,7 @@ const Actions = require('./actions-model.js');
 const router = express.Router();
 
 /**
- *  get,
+ *  get, * 
   insert,
   update,
   remove,
@@ -28,4 +28,18 @@ router.get('/', (req, res) => {
       });
 });
 
+router.post('/', (req, res) => {
+    const newAction = req.body;
+
+    Actions.insert(newAction)
+       .then(action => {
+           res.status(201).json(action);
+       })
+       .catch(error => {
+           console.log(error);
+           res.status(500).json({
+               message: "Error adding project"
+           })
+       })
+})
 module.exports = router;
