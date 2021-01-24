@@ -4,15 +4,6 @@ const express = require('express');
 const Projects = require('./projects-model.js');
 
 const router = express.Router();
-
-/**
- *   get, *
-    insert, *
-    update, *
-    remove, *
-    getProjectActions,
- */
-
  
  router.get('/', (req, res) => { 
     const { id } = req.params;
