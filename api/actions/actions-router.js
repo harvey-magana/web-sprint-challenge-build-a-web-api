@@ -5,13 +5,6 @@ const Actions = require('./actions-model.js');
 
 const router = express.Router();
 
-/**
- *  get, * 
-  insert, *
-  update, *
-  remove,
- */
-
 router.get('/', (req, res) => {
     const { id } = req.params;
 
