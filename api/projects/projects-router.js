@@ -8,7 +8,7 @@ const router = express.Router();
 /**
  *   get, *
     insert, *
-    update,
+    update, *
     remove,
     getProjectActions,
  */
@@ -28,7 +28,7 @@ const router = express.Router();
       .catch((err) => {
         res.status(500).json({ message: "Failed to get project." });
       });
- })
+ });
 
  router.post('/', (req, res) => {
      const newProject = req.body;
@@ -43,7 +43,7 @@ const router = express.Router();
                 message: "Error adding project"
             })
         })
- })
+ });
 
  router.put('/:id', (req, res) => {
     const changes = req.body;
@@ -64,6 +64,27 @@ const router = express.Router();
                 message: "Error retrieving the project."
             })
         })
- })
+ });
  
+ router.delete('/:id', (req, res) => {
+    Projects.remove(req.params.id)
+        .then(project => {
+            if(project > 0) {
+                res.status(200).json({
+                    message: "The project has been deleted."
+                })
+            } else {
+                res.status(404).json({
+                    message: "The project with the specified id does not exist."
+                })
+            }
+        })
+        .catch(error => {
+            console.log(error);
+            res.status(500).json({
+                error: "The post could not be removed"
+            })
+        })
+ });
+
 module.exports = router;
