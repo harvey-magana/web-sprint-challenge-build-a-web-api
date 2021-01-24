@@ -9,12 +9,12 @@ const router = express.Router();
  *   get, *
     insert, *
     update, *
-    remove,
+    remove, *
     getProjectActions,
  */
 
  
- router.get('/', (req, res) => { // this request is not working...
+ router.get('/', (req, res) => { 
     const { id } = req.params;
 
     Projects.get(id)
@@ -29,6 +29,20 @@ const router = express.Router();
         res.status(500).json({ message: "Failed to get project." });
       });
  });
+
+ router.get('/:id/actions', (req, res) => {
+    Projects.getProjectActions(req.params.id)
+    .then(actions => {
+      res.status(200).json(actions);
+    })
+    .catch(error => {
+      // log error to server
+      console.log(error);
+      res.status(500).json({
+        message: 'Error getting the actions for the project',
+      });
+    });
+ })
 
  router.post('/', (req, res) => {
      const newProject = req.body;
